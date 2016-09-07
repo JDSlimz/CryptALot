@@ -16,6 +16,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.scottyab.aescrypt.AESCrypt;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -98,12 +100,9 @@ public class MainActivity extends AppCompatActivity {
                 } else if(key.equals("")){
                     Toast.makeText(MainActivity.this, "Key must not be empty!",
                             Toast.LENGTH_LONG).show();
-                } else if(key.length() != 16) {
-                    Toast.makeText(MainActivity.this, "Key must be exactly 16 characters!",
-                            Toast.LENGTH_LONG).show();
                 } else {
                     try {
-                        String encrypted = CryptWork.encrypt(toEncrypt, key);
+                        String encrypted = AESCrypt.encrypt(key, toEncrypt);
                         decryptText.setText(encrypted);
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -133,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     try {
                         Log.v("To Decrypt", toDecrypt);
-                        String decrypted = CryptWork.decrypt(toDecrypt, key);
+                        String decrypted = AESCrypt.decrypt(key, toDecrypt);
                         encryptText.setText(decrypted);
                     } catch (Exception e) {
                         e.printStackTrace();
