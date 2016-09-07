@@ -23,23 +23,26 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //Define EditTexts
         final EditText encryptText = (EditText) findViewById(R.id.encryptText);
         final EditText keyText = (EditText) findViewById(R.id.keyText);
         final EditText decryptText = (EditText) findViewById(R.id.decryptText);
 
+        //Define Character Count Views
         final TextView encryptCount = (TextView) findViewById(R.id.encryptCount);
         final TextView keyCount = (TextView) findViewById(R.id.keyCount);
         final TextView decryptCount = (TextView) findViewById(R.id.decryptCount);
 
+        //Define Buttons
         final Button encryptBtn = (Button) findViewById(R.id.encryptBtn);
         final Button decryptBtn = (Button) findViewById(R.id.decryptBtn);
 
+        //Update character count for text to encrypt
         encryptText.addTextChangedListener(new TextWatcher() {
 
             public void afterTextChanged(Editable s) {
                 Integer encCount = encryptText.getText().length();
                 encryptCount.setText(encCount + " Charachters");
-
             }
 
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -49,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //Update character count for key (has to be 16)
         keyText.addTextChangedListener(new TextWatcher() {
 
             public void afterTextChanged(Editable s) {
@@ -64,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //Update character count for text to decrypt
         decryptText.addTextChangedListener(new TextWatcher() {
 
             public void afterTextChanged(Editable s) {
@@ -79,6 +84,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //Encrypt text from first text area on click.
         encryptBtn.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
@@ -107,6 +113,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //Decrypt text from third text area on click.
         decryptBtn.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
